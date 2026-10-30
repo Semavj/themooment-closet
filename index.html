@@ -1,25 +1,29 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#050505"><meta name="apple-mobile-web-app-capable" content="yes">
-<title>The Mooment — Closet</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"></head><body>
-<div id="intro" class="intro" role="dialog" aria-label="Welcome to The Mooment"><div class="glowgap" aria-hidden="true"></div>
-<div class="door dl" aria-hidden="true"><span class="handle"></span></div><div class="door dr" aria-hidden="true"><span class="handle"></span></div>
-<div class="introtxt"><p class="brandbig">THE MOOMENT</p><button id="enter" class="enter">Tap to enter</button></div><button id="skip" class="skip">Skip</button></div>
-<header class="bar top"><div class="brand">THE MOOMENT</div>
-<div class="seg" role="tablist" aria-label="Category"><button role="tab" aria-selected="true" data-mode="clothes">Clothes</button><button role="tab" aria-selected="false" data-mode="bags">Bags</button><span class="thumb"></span></div></header>
-<main id="stage" class="stage" tabindex="0" aria-roledescription="carousel" aria-label="Closet. Swipe or use arrow keys.">
-<div class="room" aria-hidden="true"></div><div class="haze" aria-hidden="true"></div><div class="spot" aria-hidden="true"></div><div class="rail" aria-hidden="true"><i class="brk l"></i><i class="brk r"></i></div><div class="floor" aria-hidden="true"></div><div class="vig" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div><div id="track" class="track"></div>
-<button class="nav prev" id="prev" aria-label="Previous item">‹</button><button class="nav next" id="next" aria-label="Next item">›</button></main>
-<section class="card" aria-live="polite"><div><p class="kicker" id="idx"></p><h1 id="name"></h1><p class="price" id="price"></p></div><button class="pill" id="shop">Select size</button></section>
-<nav class="bar tabs" aria-label="Tabs"><button class="tab on" id="tCloset"><svg viewBox="0 0 24 24"><path d="M12 3a2 2 0 0 1 2 2c0 1-1 1.5-2 2.2V9l9 7.5c.6.5.3 1.5-.5 1.5H3.5c-.8 0-1.1-1-.5-1.5L12 9"/></svg>Closet</button>
-<button class="tab" id="tBag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg>Bag<b class="badge" id="count" hidden>0</b></button></nav>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a0908">
+<title>The Mooment</title><link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6"></head><body>
+<div id="intro" class="intro" role="dialog" aria-label="The Mooment">
+<div class="door dl" aria-hidden="true"></div><div class="door dr" aria-hidden="true"></div>
+<div class="introtxt"><p class="mark">The Mooment</p><p class="sub">Fall / Winter — The Closet</p><button id="enter" class="txtbtn">Enter</button></div><button id="skip" class="skip">Skip</button></div>
+<header class="top"><a class="mark" href="#" aria-label="The Mooment">The Mooment</a>
+<nav class="tabs" role="tablist" aria-label="Category"><button role="tab" aria-selected="true" data-mode="clothes">Clothes</button><button role="tab" aria-selected="false" data-mode="bags">Bags</button></nav>
+<button class="bagbtn" id="tBag">Bag <span id="count">0</span></button></header>
+<main id="stage" class="stage" tabindex="0" aria-roledescription="carousel" aria-label="Closet. Drag or use arrow keys.">
+<div class="room" aria-hidden="true"></div><div class="spot" aria-hidden="true"></div><div class="vig" aria-hidden="true"></div>
+<div class="rail" aria-hidden="true"><i class="brk l"></i><i class="brk r"></i></div>
+<div id="track" class="track"></div><div class="grain" aria-hidden="true"></div>
+<button class="nav prev" id="prev" aria-label="Previous">←</button><button class="nav next" id="next" aria-label="Next">→</button></main>
+<section class="info" aria-live="polite"><div class="l"><p class="idx" id="idx"></p><h1 id="name"></h1></div><div class="r"><p class="price" id="price"></p><button class="txtbtn" id="shop">Add</button></div></section>
 <div class="scrim" id="scrim"></div>
-<div class="sheet" id="pdp" role="dialog" aria-modal="true" aria-labelledby="pName"><div class="grab"></div><button class="close" data-close aria-label="Close">✕</button>
-<div class="gal" id="pGal"></div><p class="galnote" id="pNote"></p><h2 id="pName"></h2><p class="price" id="pPrice"></p><p class="lbl">Size</p><div class="sizes" id="pSizes" role="radiogroup" aria-label="Size"></div>
-<details><summary>Details</summary><p id="pDesc"></p></details><button class="cta" id="pAdd">Add to Bag</button></div>
-<div class="sheet" id="cart" role="dialog" aria-modal="true" aria-labelledby="cT"><div class="grab"></div><button class="close" data-close aria-label="Close">✕</button>
-<h2 id="cT">Bag</h2><ul id="lines" class="list"></ul><div class="sum"><span>Subtotal</span><b id="sub">$0.00</b></div><button class="cta" id="toCheckout">Check Out</button></div>
-<div class="sheet" id="co" role="dialog" aria-modal="true" aria-labelledby="oT"><div class="grab"></div><button class="close" data-close aria-label="Close">✕</button>
-<h2 id="oT">Order Summary</h2><ul id="oLines" class="list"></ul><div class="group"><div class="sum"><span>Subtotal</span><b id="oSub"></b></div><div class="sum muted"><span>Shipping & taxes</span><span>Calculated at checkout</span></div></div>
-<p class="note">You'll finish payment securely on The Mooment's Shopify checkout. Your bag is carried over.</p><button class="cta" id="pay">Continue to Secure Checkout</button></div>
-<div class="sheet" id="done" role="dialog" aria-modal="true" aria-labelledby="dT"><div class="grab"></div><div class="check">✓</div><h2 id="dT">Order sent to checkout</h2><p class="note" id="dMsg">Redirecting to themooment.com…</p><a class="cta" id="dLink" href="#">Open checkout</a><button class="ghost" data-close>Keep browsing</button></div>
-<script src="products.js"></script><script src="app.js"></script></body></html>
+<div class="sheet" id="pdp" role="dialog" aria-modal="true" aria-labelledby="pName"><button class="close" data-close>Close</button>
+<div class="gal" id="pGal"></div><p class="galnote" id="pNote"></p><div class="row"><h2 id="pName"></h2><p class="price" id="pPrice"></p></div><p class="lbl">Size</p><div class="sizes" id="pSizes" role="radiogroup" aria-label="Size"></div>
+<details><summary>Details</summary><p id="pDesc"></p></details><button class="cta" id="pAdd">Add to bag</button></div>
+<div class="sheet" id="cart" role="dialog" aria-modal="true" aria-labelledby="cT"><button class="close" data-close>Close</button>
+<h2 id="cT">Bag</h2><ul id="lines" class="list"></ul><div class="sum"><span>Subtotal</span><span id="sub">$0.00</span></div><button class="cta" id="toCheckout">Checkout</button></div>
+<div class="sheet" id="co" role="dialog" aria-modal="true" aria-labelledby="oT"><button class="close" data-close>Close</button>
+<h2 id="oT">Summary</h2><ul id="oLines" class="list"></ul><div class="sum"><span>Subtotal</span><span id="oSub"></span></div><div class="sum muted"><span>Shipping &amp; taxes</span><span>At checkout</span></div>
+<p class="note">Payment is completed on The Mooment's secure Shopify checkout. Your bag carries over.</p><button class="cta" id="pay">Continue to checkout</button></div>
+<div class="sheet" id="done" role="dialog" aria-modal="true" aria-labelledby="dT"><h2 id="dT">Sent to checkout</h2><p class="note" id="dMsg">Redirecting to themooment.com…</p><a class="cta" id="dLink" href="#">Open checkout</a><button class="txtbtn ghost" data-close>Keep browsing</button></div>
+<script src="products.js?v=6"></script><script src="app.js?v=6"></script></body></html>

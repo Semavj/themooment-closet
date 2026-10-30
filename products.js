@@ -20,7 +20,7 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/untitled-jul29_13-58-51.webp",
+  "cut": "cut/untitled-jul29_13-58-51.webp?v=6",
   "hook": [
    0.499,
    0,
@@ -72,7 +72,7 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/untitled-jun18_19-55.webp?v=4",
+  "cut": "cut/untitled-jun18_19-55.webp?v=6",
   "hook": [
    0.496,
    0.014,
@@ -130,7 +130,7 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/red-gem-theory.webp?v=4",
+  "cut": "cut/red-gem-theory.webp?v=6",
   "hook": [
    0.5,
    0.014,
@@ -188,7 +188,7 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/yellow-gem-theory.webp?v=4",
+  "cut": "cut/yellow-gem-theory.webp?v=6",
   "hook": [
    0.496,
    0.014,
@@ -218,7 +218,7 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/dual-essence.webp",
+  "cut": "cut/dual-essence.webp?v=6",
   "hook": [
    0.499,
    0,
@@ -269,7 +269,7 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/the-essential-mooment-sets-gray.webp?v=4",
+  "cut": "cut/the-essential-mooment-sets-gray.webp?v=6",
   "hook": [
    0.49,
    0.014,
@@ -323,13 +323,13 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/the-essential-mooment-sets-blue.webp?v=5",
+  "cut": "cut/the-essential-mooment-sets-blue.webp?v=6",
   "hook": [
    0.498,
    0.014,
    0
   ],
-  "ar": 1.718,
+  "ar": 1.716,
   "ai": 1
  },
  {
@@ -377,7 +377,7 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-black.webp?v=4",
+  "cut": "cut/gem-theory-black.webp?v=6",
   "hook": [
    0.499,
    0.014,
@@ -430,7 +430,7 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/proof-of-pressure-tee-ivory.webp?v=4",
+  "cut": "cut/proof-of-pressure-tee-ivory.webp?v=6",
   "hook": [
    0.495,
    0.014,
@@ -484,7 +484,7 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-hoodie-purple.webp?v=4",
+  "cut": "cut/gem-theory-hoodie-purple.webp?v=6",
   "hook": [
    0.504,
    0.014,
@@ -532,7 +532,7 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-hoodie-blue.webp?v=4",
+  "cut": "cut/gem-theory-hoodie-blue.webp?v=6",
   "hook": [
    0.498,
    0.014,
@@ -597,7 +597,7 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/blue-wavy-sweater.webp?v=4",
+  "cut": "cut/blue-wavy-sweater.webp?v=6",
   "hook": [
    0.515,
    0.014,
@@ -662,7 +662,7 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/pink-wavy-sweater.webp?v=4",
+  "cut": "cut/pink-wavy-sweater.webp?v=6",
   "hook": [
    0.49,
    0.014,
