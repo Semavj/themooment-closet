@@ -9,41 +9,44 @@ let sec=[],sv=[],mode='clothes',items=[],els=[],x=0,v=0,target=0,th=[],om=[],dra
 const stage=$('#stage'),track=$('#track');
 function build(){items=sets[mode];document.body.classList.toggle('bags',mode=='bags');
  track.innerHTML=items.map((p,i)=>mode=='bags'?`<div class="item bag" data-i="${i}"><img src="${p.cut}" alt="${p.name}" draggable="false"><div class="ped"></div></div>`
- :`<div class="item" data-i="${i}">${HOOK}${HGR}<div class="cloth"><img src="${p.cut}" alt="${p.name}" draggable="false"><div class="shade" style="-webkit-mask-image:url(${p.cut});mask-image:url(${p.cut})"></div></div><div class="cast"></div></div>`).join('');
+ :`<div class="item hang" data-i="${i}"><div class="cloth"><img src="${p.cut}" alt="${p.name}" draggable="false"><div class="shade" style="-webkit-mask-image:url('${p.cut}');mask-image:url('${p.cut}')"></div></div></div>`).join('');
 
- els=[...track.children];layout();th=items.map(()=>0);om=items.map(()=>0);x=target=0;v=0;th[0]=mode=='bags'?.5:.35;sec=items.map(()=>0);sv=items.map(()=>0);info();}
-function layout(){const vh=innerHeight,vw=innerWidth;els.forEach((e,i)=>{const p=items[i];
+ els=[...track.children];layout();th=items.map(()=>0);om=items.map(()=>0);x=target=0;v=0;th[0]=mode=='bags'?.5:.12;sec=items.map(()=>0);sv=items.map(()=>0);info();}
+let railY=150;
+function layout(){const vh=innerHeight,vw=innerWidth;const hb=document.querySelector('header.top').getBoundingClientRect().bottom,ct=document.querySelector('.card').getBoundingClientRect().top;
+ railY=Math.round(hb+30);stage.style.setProperty('--railY',(railY-stage.getBoundingClientRect().top)+'px');
+ els.forEach((e,i)=>{const p=items[i];
  if(mode=='bags'){const w=Math.min(vw*.7,(vh-400)/p.ar,420);e.style.width=w+'px';e.style.marginLeft=(-w/2)+'px';return}
- const hookh=Math.max(34,vh*.05),avail=vh-112-hookh-200,w=Math.min(vw*.84,avail/p.ar,500),h=w*p.ar,[nx,ny]=p.hook,neck=ny*h+Math.min(h*.03,14);
- e.style.width=w+'px';e.style.marginLeft=(-w/2)+'px';e.style.height=(hookh+h-neck)+'px';
- e.style.setProperty('--ox',nx*w+'px');e.style.setProperty('--neck',neck+'px');e.style.setProperty('--hookh',hookh+'px');e.style.setProperty('--hw',(w*.36)+'px');e.style.setProperty('--tuck',Math.min(h*.09,40)+'px');
- const c=e.querySelector('.cast');c.style.top=(hookh-neck+h-6)+'px';e._cloth=e.querySelector('.cloth');e._shade=e.querySelector('.shade')})}
+ const avail=ct-railY-14,[nx,ny]=p.hook,w=Math.min(vw*(vw>900?.4:.86),avail/(p.ar*(1-ny)),520),h=w*p.ar,px=nx*w,py=ny*h;
+ e.style.width=w+'px';e.style.height=h+'px';e.style.marginLeft=(-px)+'px';e.style.top=(railY-stage.getBoundingClientRect().top-py)+'px';
+ e.style.transformOrigin=px+'px '+py+'px';e._cloth=e.querySelector('.cloth');e._cloth.style.transformOrigin=px+'px '+py+'px';e._shade=e.querySelector('.shade')})}
 addEventListener('resize',layout);
 function info(){const i=idx(),p=items[i];$('#name').textContent=p.name;$('#price').textContent=fmt(p.price);$('#idx').textContent=(mode=='bags'?'Bags':'Closet')+' · '+(i+1)+' of '+items.length;
  els.forEach((e,j)=>{e.setAttribute('aria-hidden',j!=i)})}
 const idx=()=>Math.max(0,Math.min(items.length-1,Math.round(target)));
-function go(i,kick=1){const n=Math.max(0,Math.min(items.length-1,i));if(n!=target){const dir=Math.sign(n-target);target=n;th[n]+=-dir*.55*kick;haptic();info()}else if(i!=n){th[n]+=(i>n?-1:1)*.12}}
+function go(i,kick=1){const n=Math.max(0,Math.min(items.length-1,i));if(n!=target){const dir=Math.sign(n-target);target=n;th[n]+=-dir*.13*kick;if(th[target-dir]!=null)th[target-dir]+=-dir*.06;haptic();info()}else if(i!=n){th[n]+=(i>n?-1:1)*.06}}
 // physics loop (semi-implicit Euler, fixed dt)
 let last=performance.now();function tick(t){let dt=Math.min(.033,(t-last)/1000);last=t;const W=width();
  if(!drag){const a=-170*(x-target)-24*v;v+=a*dt;x+=v*dt;lastAcc=a}else{lastAcc=dragV*30;}
  els.forEach((e,i)=>{const d=i-x;// pendulum: θ'' = -g/L θ - c θ' - track accel coupling
-  const acc=-60*th[i]-3.2*om[i]+lastAcc*.012*(Math.abs(d)<1.5?1:0)-(drag&&Math.abs(d)<.6?dragV*.9:0);om[i]+=acc*dt;th[i]+=om[i]*dt;th[i]=Math.max(-.6,Math.min(.6,th[i]));
+  const hang=mode!='bags',K=hang?38:60,C=hang?4.2:3.2,LIM=hang?.16:.6;
+  const acc=-K*th[i]-C*om[i]+lastAcc*(hang?.0035:.012)*(Math.abs(d)<1.6?1:0)-(drag&&Math.abs(d)<.6?dragV*(hang?.25:.9):0);om[i]+=acc*dt;th[i]+=om[i]*dt;th[i]=Math.max(-LIM,Math.min(LIM,th[i]));
   const a=Math.abs(d);if(a>2.2){e.style.visibility='hidden';return}e.style.visibility='visible';
-  const s=1-Math.min(a,1)*.22,deg=th[i]*57.3;
-  e.style.transform=mode=='bags'?`translateX(${d*W}px) scale(${s}) rotateY(${deg*1.6}deg) rotate(${deg*.25}deg)`:`translateX(${d*W}px) scale(${s}) rotate(${deg}deg)`;
-  e.style.opacity=1-Math.min(a,1)*.55;
-  if(e._cloth){// secondary motion: cloth lags behind hanger like a damped spring
-   const sa=-90*(sec[i]-th[i])-9*sv[i];sv[i]+=sa*dt;sec[i]+=sv[i]*dt;const lag=(sec[i]-th[i])*57.3;
-   e._cloth.style.transform=`rotate(${lag*.6}deg) skewX(${(-om[i]*3.2+lag*.5).toFixed(2)}deg) scaleY(${(1+Math.min(.015,Math.abs(om[i])*.01)).toFixed(4)})`;
-   e._shade.style.setProperty('--la',(deg*2.2).toFixed(1)+'deg')}e.style.zIndex=10-Math.round(a*3)});
+  const s=1-Math.min(a,1)*(hang?.18:.22),deg=th[i]*57.3;
+  e.style.transform=!hang?`translateX(${d*W}px) scale(${s}) rotateY(${deg*1.6}deg) rotate(${deg*.25}deg)`:`translateX(${d*W}px) rotate(${deg.toFixed(2)}deg) scale(${s})`;
+  if(hang){e.style.opacity=1;e.style.filter=a>.05?`brightness(${(1-Math.min(a,1)*.62).toFixed(2)})`:'none'}else e.style.opacity=1-Math.min(a,1)*.55;
+  if(e._cloth){// fabric lag: hem trails the hanger
+   const sa=-70*(sec[i]-th[i])-10*sv[i];sv[i]+=sa*dt;sec[i]+=sv[i]*dt;const lag=(sec[i]-th[i])*57.3;
+   e._cloth.style.transform=`skewX(${Math.max(-3,Math.min(3,-lag*.9-om[i]*1.2)).toFixed(2)}deg)`;
+   e._shade.style.setProperty('--la',(deg*3).toFixed(1)+'deg')}e.style.zIndex=10-Math.round(a*3)});
  requestAnimationFrame(tick)}
-const width=()=>innerWidth>900?Math.min(innerWidth*.42,520)+80:Math.min(innerWidth*.84,460)*.9;requestAnimationFrame(tick);
+const width=()=>mode!='bags'?(innerWidth>900?Math.min(innerWidth*.3,420):innerWidth*.74):(innerWidth>900?Math.min(innerWidth*.42,520)+80:Math.min(innerWidth*.84,460)*.9);requestAnimationFrame(tick);
 let sx,lx,lt,moved;
 stage.addEventListener('pointerdown',e=>{if(e.target.closest('.nav'))return;drag=1;sx=lx=e.clientX;lt=performance.now();moved=0;dragV=0;stage.setPointerCapture(e.pointerId)});
 stage.addEventListener('pointermove',e=>{if(!drag)return;const now=performance.now(),dx=e.clientX-lx;lx=e.clientX;moved+=Math.abs(dx);let nx=x-dx/width();
  if(nx<0||nx>items.length-1)nx=x-dx/width()*.35;const vv=(nx-x)/Math.max(.008,(now-lt)/1000);v=vv;dragV=dragV*.6+vv*.4;x=nx;lt=now});
 const up=e=>{if(!drag)return;drag=null;const vv=dragV;dragV=0;if(moved<8){if(e.target.closest('.item'))openPDP();return}
- let n=Math.round(x+Math.max(-.6,Math.min(.6,vv*.18)));n=Math.max(0,Math.min(items.length-1,n));if(n!=target){const dir=Math.sign(n-target);target=n;th[n]+=-dir*.4;haptic();info()}};
+ let n=Math.round(x+Math.max(-.6,Math.min(.6,vv*.18)));n=Math.max(0,Math.min(items.length-1,n));if(n!=target){const dir=Math.sign(n-target);target=n;th[n]+=-dir*.12;haptic();info()}};
 stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
 addEventListener('keydown',e=>{if(document.querySelector('.sheet.on'))return;if(e.key=='ArrowRight')go(target+1);if(e.key=='ArrowLeft')go(target-1);if(e.key=='Enter')openPDP()});
 $('#prev').onclick=e=>{haptic(e.currentTarget);go(target-1)};$('#next').onclick=e=>{haptic(e.currentTarget);go(target+1)};

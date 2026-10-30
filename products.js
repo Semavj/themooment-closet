@@ -2,7 +2,7 @@ window.PRODUCTS=[
  {
   "id": "untitled-jul29_13-58-51",
   "name": "DUAL ESSENCE (PINK)",
-  "price": 225.0,
+  "price": 225,
   "imgs": [
    "assets/untitled-jul29_13-58-51-0.jpg",
    "assets/untitled-jul29_13-58-51-1.jpg",
@@ -23,7 +23,7 @@ window.PRODUCTS=[
   "cut": "cut/untitled-jul29_13-58-51.webp",
   "hook": [
    0.499,
-   0.0,
+   0,
    0.337
   ],
   "ar": 1.076
@@ -31,7 +31,7 @@ window.PRODUCTS=[
  {
   "id": "untitled-jun18_19-55",
   "name": "Proof of Pressure Tee",
-  "price": 50.0,
+  "price": 50,
   "imgs": [
    "assets/untitled-jun18_19-55-0.jpg",
    "assets/untitled-jun18_19-55-1.jpg"
@@ -72,18 +72,19 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/untitled-jun18_19-55.webp",
+  "cut": "cut/untitled-jun18_19-55.webp?v=4",
   "hook": [
-   0.499,
-   0.036,
-   0.795
+   0.496,
+   0.014,
+   0
   ],
-  "ar": 0.695
+  "ar": 1.258,
+  "ai": 1
  },
  {
   "id": "red-gem-theory",
   "name": "RED GEM THEORY",
-  "price": 100.0,
+  "price": 100,
   "imgs": [
    "assets/red-gem-theory-0.jpg"
   ],
@@ -129,18 +130,19 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/red-gem-theory.webp",
+  "cut": "cut/red-gem-theory.webp?v=4",
   "hook": [
-   0.499,
-   0.0,
-   0.518
+   0.5,
+   0.014,
+   0
   ],
-  "ar": 0.992
+  "ar": 1.321,
+  "ai": 1
  },
  {
   "id": "yellow-gem-theory",
   "name": "YELLOW HOODIE",
-  "price": 100.0,
+  "price": 100,
   "imgs": [
    "assets/yellow-gem-theory-0.jpg"
   ],
@@ -186,18 +188,19 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/yellow-gem-theory.webp",
+  "cut": "cut/yellow-gem-theory.webp?v=4",
   "hook": [
-   0.499,
-   0.0,
-   0.519
+   0.496,
+   0.014,
+   0
   ],
-  "ar": 0.992
+  "ar": 1.337,
+  "ai": 1
  },
  {
   "id": "dual-essence",
   "name": "DUAL ESSENCE",
-  "price": 225.0,
+  "price": 225,
   "imgs": [
    "assets/dual-essence-0.jpg",
    "assets/dual-essence-1.jpg",
@@ -218,7 +221,7 @@ window.PRODUCTS=[
   "cut": "cut/dual-essence.webp",
   "hook": [
    0.499,
-   0.0,
+   0,
    0.376
   ],
   "ar": 1.09
@@ -226,11 +229,11 @@ window.PRODUCTS=[
  {
   "id": "the-essential-mooment-sets-gray",
   "name": "ESSENCE SET(GRAY)",
-  "price": 120.0,
+  "price": 120,
   "imgs": [
    "assets/the-essential-mooment-sets-gray-0.jpg"
   ],
-  "desc": "ESSENCE SET This is more than comfort. This is your everyday statement. Designed for effortless confidence, this set blends a luxury feel with everyday wear. Clean, structured, and easy to wear it\u2019s the piece you reach for without thinking twice. Minimal design. Maximum presence. This is The Mooment. DETAILS French Terry 330 GSM Breathable + lightweight Structured, relaxed fit Elastic waistband with drawstring FIT Tr",
+  "desc": "ESSENCE SET This is more than comfort. This is your everyday statement. Designed for effortless confidence, this set blends a luxury feel with everyday wear. Clean, structured, and easy to wear it’s the piece you reach for without thinking twice. Minimal design. Maximum presence. This is The Mooment. DETAILS French Terry 330 GSM Breathable + lightweight Structured, relaxed fit Elastic waistband with drawstring FIT Tr",
   "bag": false,
   "sizes": [
    "S",
@@ -266,25 +269,25 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/the-essential-mooment-sets-gray.webp",
+  "cut": "cut/the-essential-mooment-sets-gray.webp?v=4",
   "hook": [
-   0.499,
-   0.003,
-   0.596
+   0.49,
+   0.014,
+   0
   ],
-  "ar": 1.541,
+  "ar": 1.788,
   "ai": 1
  },
  {
   "id": "the-essential-mooment-sets-blue",
   "name": "ESSENCE SET (BLUE)",
-  "price": 120.0,
+  "price": 120,
   "imgs": [
    "assets/the-essential-mooment-sets-blue-0.jpg",
    "assets/the-essential-mooment-sets-blue-1.jpg",
    "assets/the-essential-mooment-sets-blue-2.jpg"
   ],
-  "desc": "ESSENCE SET This is more than comfort. This is your everyday statement. Designed for effortless confidence, this set blends a luxury feel with everyday wear. Clean, structured, and easy to wear it\u2019s the piece you reach for without thinking twice. Minimal design. Maximum presence. This is The Mooment. DETAILS French Terry 330 GSM Breathable + lightweight Structured, relaxed fit Elastic waistband with drawstring FIT Tr",
+  "desc": "ESSENCE SET This is more than comfort. This is your everyday statement. Designed for effortless confidence, this set blends a luxury feel with everyday wear. Clean, structured, and easy to wear it’s the piece you reach for without thinking twice. Minimal design. Maximum presence. This is The Mooment. DETAILS French Terry 330 GSM Breathable + lightweight Structured, relaxed fit Elastic waistband with drawstring FIT Tr",
   "bag": false,
   "sizes": [
    "S",
@@ -320,18 +323,19 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/the-essential-mooment-sets-blue.webp",
+  "cut": "cut/the-essential-mooment-sets-blue.webp?v=5",
   "hook": [
-   0.499,
-   0.0,
-   0.476
+   0.498,
+   0.014,
+   0
   ],
-  "ar": 1.637
+  "ar": 1.718,
+  "ai": 1
  },
  {
   "id": "gem-theory-black",
   "name": "GEM THEORY BLACK",
-  "price": 80.0,
+  "price": 80,
   "imgs": [
    "assets/gem-theory-black-0.jpg",
    "assets/gem-theory-black-1.jpg",
@@ -373,18 +377,19 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-black.webp",
+  "cut": "cut/gem-theory-black.webp?v=4",
   "hook": [
    0.499,
-   0.009,
-   0.31
+   0.014,
+   0
   ],
-  "ar": 0.805
+  "ar": 1.273,
+  "ai": 1
  },
  {
   "id": "proof-of-pressure-tee-ivory",
   "name": "Proof of Pressure Tee (Ivory)",
-  "price": 30.0,
+  "price": 30,
   "imgs": [
    "assets/proof-of-pressure-tee-ivory-0.jpg",
    "assets/proof-of-pressure-tee-ivory-1.jpg"
@@ -425,24 +430,25 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/proof-of-pressure-tee-ivory.webp",
+  "cut": "cut/proof-of-pressure-tee-ivory.webp?v=4",
   "hook": [
-   0.499,
-   0.034,
-   0.799
+   0.495,
+   0.014,
+   0
   ],
-  "ar": 0.766
+  "ar": 1.259,
+  "ai": 1
  },
  {
   "id": "gem-theory-hoodie-purple",
   "name": "GEM THEORY HOODIE (Purple)",
-  "price": 80.0,
+  "price": 80,
   "imgs": [
    "assets/gem-theory-hoodie-purple-0.jpg",
    "assets/gem-theory-hoodie-purple-1.jpg",
    "assets/gem-theory-hoodie-purple-2.jpg"
   ],
-  "desc": "GEM THEORY HOODIE Pressure creates gems. Crafted from heavyweight 100% cotton French Terry, this hoodie delivers structure, softness, and durability in every wear. Smooth on the outside with a soft loopback interior, designed for year-round comfort. The oversized streetwear fit gives you a clean, elevated silhouette that holds its shape \u2014 minimal design, maximum statement. Fabric: 100% Cotton Heavyweight French Terry",
+  "desc": "GEM THEORY HOODIE Pressure creates gems. Crafted from heavyweight 100% cotton French Terry, this hoodie delivers structure, softness, and durability in every wear. Smooth on the outside with a soft loopback interior, designed for year-round comfort. The oversized streetwear fit gives you a clean, elevated silhouette that holds its shape — minimal design, maximum statement. Fabric: 100% Cotton Heavyweight French Terry",
   "bag": false,
   "sizes": [
    "S",
@@ -478,24 +484,25 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-hoodie-purple.webp",
+  "cut": "cut/gem-theory-hoodie-purple.webp?v=4",
   "hook": [
-   0.499,
-   0.06,
-   0.328
+   0.504,
+   0.014,
+   0
   ],
-  "ar": 1.103
+  "ar": 1.294,
+  "ai": 1
  },
  {
   "id": "gem-theory-hoodie-blue",
   "name": "GEM THEORY HOODIE (Blue)",
-  "price": 60.0,
+  "price": 60,
   "imgs": [
    "assets/gem-theory-hoodie-blue-0.jpg",
    "assets/gem-theory-hoodie-blue-1.jpg",
    "assets/gem-theory-hoodie-blue-2.jpg"
   ],
-  "desc": "GEM THEORY HOODIE Pressure creates gems. Crafted from heavyweight 100% cotton French Terry, this hoodie delivers structure, softness, and durability in every wear. Smooth on the outside with a soft loopback interior, designed for year-round comfort. The oversized streetwear fit gives you a clean, elevated silhouette that holds its shape \u2014 minimal design, maximum statement. Fabric: 100% Cotton Heavyweight French Terry",
+  "desc": "GEM THEORY HOODIE Pressure creates gems. Crafted from heavyweight 100% cotton French Terry, this hoodie delivers structure, softness, and durability in every wear. Smooth on the outside with a soft loopback interior, designed for year-round comfort. The oversized streetwear fit gives you a clean, elevated silhouette that holds its shape — minimal design, maximum statement. Fabric: 100% Cotton Heavyweight French Terry",
   "bag": false,
   "sizes": [
    "S",
@@ -525,24 +532,25 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-hoodie-blue.webp",
+  "cut": "cut/gem-theory-hoodie-blue.webp?v=4",
   "hook": [
-   0.499,
-   0.209,
-   0.7
+   0.498,
+   0.014,
+   0
   ],
-  "ar": 1.155
+  "ar": 1.319,
+  "ai": 1
  },
  {
   "id": "blue-wavy-sweater",
   "name": "Blue Wavy Sweater",
-  "price": 50.0,
+  "price": 50,
   "imgs": [
    "assets/blue-wavy-sweater-0.jpg",
    "assets/blue-wavy-sweater-1.jpg",
    "assets/blue-wavy-sweater-2.jpg"
   ],
-  "desc": "-Regular fit sweater -True to size -If you want an oversized sweater, GO UP A SIZE -100% cotton sweater -Please read inside labels for washing/drying directions **Each piece is carefully crafted with love and detail, ensuring a unique and high-quality product unlike you\u2019ve ever seen before. Our goal is to bring local communities together through our fashion, creating a sense of unity and pride in your personal style.",
+  "desc": "-Regular fit sweater -True to size -If you want an oversized sweater, GO UP A SIZE -100% cotton sweater -Please read inside labels for washing/drying directions **Each piece is carefully crafted with love and detail, ensuring a unique and high-quality product unlike you’ve ever seen before. Our goal is to bring local communities together through our fashion, creating a sense of unity and pride in your personal style.",
   "bag": false,
   "sizes": [
    "XS",
@@ -589,25 +597,25 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/blue-wavy-sweater.webp",
+  "cut": "cut/blue-wavy-sweater.webp?v=4",
   "hook": [
-   0.498,
-   0.041,
-   0.608
+   0.515,
+   0.014,
+   0
   ],
-  "ar": 0.841,
+  "ar": 1.322,
   "ai": 1
  },
  {
   "id": "pink-wavy-sweater",
   "name": "PINK WAVY SWEATER",
-  "price": 50.0,
+  "price": 50,
   "imgs": [
    "assets/pink-wavy-sweater-0.jpg",
    "assets/pink-wavy-sweater-1.jpg",
    "assets/pink-wavy-sweater-2.jpg"
   ],
-  "desc": "-Regular fit sweater -True to size -If you want an oversized sweater, GO UP A SIZE -100% cotton sweater -Please read inside labels for washing/drying directions **Each piece is carefully crafted with love and detail, ensuring a unique and high-quality product unlike you\u2019ve ever seen before. Our goal is to bring local communities together through our fashion, creating a sense of unity and pride in your personal style.",
+  "desc": "-Regular fit sweater -True to size -If you want an oversized sweater, GO UP A SIZE -100% cotton sweater -Please read inside labels for washing/drying directions **Each piece is carefully crafted with love and detail, ensuring a unique and high-quality product unlike you’ve ever seen before. Our goal is to bring local communities together through our fashion, creating a sense of unity and pride in your personal style.",
   "bag": false,
   "sizes": [
    "XS",
@@ -654,13 +662,13 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/pink-wavy-sweater.webp",
+  "cut": "cut/pink-wavy-sweater.webp?v=4",
   "hook": [
-   0.499,
-   0.012,
-   0.591
+   0.49,
+   0.014,
+   0
   ],
-  "ar": 0.802,
+  "ar": 1.286,
   "ai": 1
  }
 ];

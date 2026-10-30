@@ -111,3 +111,25 @@ body.entering .card,body.entering .bar{animation:fadein .6s 1.4s both}@keyframes
 .item .hk{z-index:1;width:30px;left:calc(var(--ox) - 15px);top:-6px;height:calc(var(--hookh) + var(--tuck) + 10px);overflow:hidden}
 .item .hgr{z-index:1;top:calc(var(--hookh) + var(--tuck) - 2px)}
 .door{width:49.7%}.glowgap{z-index:2;width:3px}.door{z-index:1}
+
+/* round 4: moody closet + real hanging */
+#stage{--railY:140px}
+.room{position:absolute;inset:-12px;background:#050403 url(assets/closet-bg.jpg) center 40%/cover no-repeat;filter:blur(3px) brightness(.62) saturate(.9);transform:scale(1.04)}
+.haze{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 30% at 50% 62%,rgba(255,200,140,.07),transparent 70%);animation:hz 14s ease-in-out infinite alternate}
+@keyframes hz{to{transform:translateX(4%) scale(1.05);opacity:.7}}
+.spot,.bags .spot{display:block;position:absolute;left:50%;top:0;width:min(760px,150vw);height:100%;transform:translateX(-50%);pointer-events:none;mix-blend-mode:screen;
+ background:radial-gradient(ellipse 30% 46% at 50% 44%,rgba(255,226,180,.22),transparent 72%),conic-gradient(from 180deg at 50% -6%,transparent 165deg,rgba(255,224,170,.10) 172deg,rgba(255,232,190,.16) 180deg,rgba(255,224,170,.10) 188deg,transparent 195deg)}
+.rail{top:calc(var(--railY) - 5px);left:0;right:0;height:10px;border-radius:5px;z-index:4;pointer-events:none;
+ background:linear-gradient(#fff3d6 0%,#e2c07c 22%,#9c7838 50%,#4a3515 78%,#b8924e 100%);box-shadow:0 0 18px rgba(230,190,110,.35),0 7px 12px rgba(0,0,0,.75)}
+.rail .brk{position:absolute;top:-34px;width:14px;height:44px;border-radius:3px;background:linear-gradient(90deg,#3a2a10,#c8a25e 50%,#3a2a10);box-shadow:0 4px 8px rgba(0,0,0,.7)}
+.rail .brk.l{left:3%}.rail .brk.r{right:3%}
+.bags .rail{display:none}
+.vig{position:absolute;inset:0;pointer-events:none;z-index:5;background:radial-gradient(ellipse 85% 75% at 50% 45%,transparent 50%,rgba(0,0,0,.78) 100%)}
+.grain{position:absolute;inset:-50%;pointer-events:none;z-index:6;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:gr 1s steps(4) infinite}
+@keyframes gr{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-1%,3%)}}
+@media(prefers-reduced-motion:reduce){.grain,.haze{animation:none}}
+.item.hang{z-index:3;margin-left:0}
+.item.hang .cloth{position:absolute;inset:0;top:0}
+.item.hang .cloth img{width:100%;height:100%;object-fit:fill;filter:drop-shadow(0 22px 24px rgba(0,0,0,.8)) drop-shadow(0 4px 6px rgba(0,0,0,.55))}
+.item.hang .shade{background:linear-gradient(calc(165deg + var(--la,0deg)),rgba(255,236,200,.35),transparent 40%,rgba(0,0,0,.45))}
+#track{z-index:3}
