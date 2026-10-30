@@ -1,14 +1,24 @@
 const $=s=>document.querySelector(s),fmt=n=>'$'+n.toFixed(2),P=window.PRODUCTS;
 const MODEL=['the-essential-mooment-sets-gray','the-essential-mooment-sets-blue'];
 const sets={clothes:P.filter(p=>!p.bag),bags:P.filter(p=>p.bag)};
-const HANGER=`<svg class="hanger" viewBox="0 0 300 120" aria-hidden="true"><defs><linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c79a63"/><stop offset=".5" stop-color="#9a6a3a"/><stop offset="1" stop-color="#6e4624"/></linearGradient><linearGradient id="c" x1="0" x2="1"><stop offset="0" stop-color="#8d8d94"/><stop offset=".5" stop-color="#f7f7f9"/><stop offset="1" stop-color="#7a7a82"/></linearGradient></defs><path d="M150 58 C150 40 150 34 150 30 C150 14 168 10 168 24" fill="none" stroke="url(#c)" stroke-width="5" stroke-linecap="round"/><circle cx="150" cy="60" r="7" fill="url(#c)"/><path d="M150 60 Q100 74 18 104 Q8 108 12 114 L288 114 Q292 108 282 104 Q200 74 150 60Z" fill="url(#w)"/><path d="M20 112 L280 112" stroke="#5a381b" stroke-width="3"/></svg>`;
+const OLD_HANGER=`<svg class="hanger" viewBox="0 0 300 120" aria-hidden="true"><defs><linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c79a63"/><stop offset=".5" stop-color="#9a6a3a"/><stop offset="1" stop-color="#6e4624"/></linearGradient><linearGradient id="c" x1="0" x2="1"><stop offset="0" stop-color="#8d8d94"/><stop offset=".5" stop-color="#f7f7f9"/><stop offset="1" stop-color="#7a7a82"/></linearGradient></defs><path d="M150 58 C150 40 150 34 150 30 C150 14 168 10 168 24" fill="none" stroke="url(#c)" stroke-width="5" stroke-linecap="round"/><circle cx="150" cy="60" r="7" fill="url(#c)"/><path d="M150 60 Q100 74 18 104 Q8 108 12 114 L288 114 Q292 108 282 104 Q200 74 150 60Z" fill="url(#w)"/><path d="M20 112 L280 112" stroke="#5a381b" stroke-width="3"/></svg>`;
+const HOOK=`<svg class="hk" viewBox="0 0 30 60" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><defs><linearGradient id="hc" x1="0" x2="1"><stop offset="0" stop-color="#6d6d73"/><stop offset=".5" stop-color="#fafafa"/><stop offset="1" stop-color="#5d5d63"/></linearGradient></defs><path d="M15 400 L15 16 C15 4 4 2 3 10 C2 15 6 17 8 15" fill="none" stroke="url(#hc)" stroke-width="3.2" stroke-linecap="round"/></svg>`;
+const HGR=`<svg class="hgr" viewBox="0 0 300 50" aria-hidden="true"><path d="M150 4 Q90 18 8 40 Q0 46 8 48 L292 48 Q300 46 292 40 Q210 18 150 4Z" fill="#8a6a45"/></svg>`;
 const haptic=(el)=>{try{navigator.vibrate&&navigator.vibrate(8)}catch(e){}if(el){el.classList.remove('tap');void el.offsetWidth;el.classList.add('tap')}};
-let mode='clothes',items=[],els=[],x=0,v=0,target=0,th=[],om=[],drag=null,dragV=0,lastAcc=0;
+let sec=[],sv=[],mode='clothes',items=[],els=[],x=0,v=0,target=0,th=[],om=[],drag=null,dragV=0,lastAcc=0;
 const stage=$('#stage'),track=$('#track');
 function build(){items=sets[mode];document.body.classList.toggle('bags',mode=='bags');
  track.innerHTML=items.map((p,i)=>mode=='bags'?`<div class="item bag" data-i="${i}"><img src="${p.cut}" alt="${p.name}" draggable="false"><div class="ped"></div></div>`
- :`<div class="item ${MODEL.includes(p.id)?'model':''}" data-i="${i}">${HANGER}<img src="${p.cut}" alt="${p.name}" draggable="false"></div>`).join('');
- els=[...track.children];th=items.map(()=>0);om=items.map(()=>0);x=target=0;v=0;th[0]=mode=='bags'?.5:.35;info();}
+ :`<div class="item" data-i="${i}">${HOOK}${HGR}<div class="cloth"><img src="${p.cut}" alt="${p.name}" draggable="false"><div class="shade" style="-webkit-mask-image:url(${p.cut});mask-image:url(${p.cut})"></div></div><div class="cast"></div></div>`).join('');
+
+ els=[...track.children];layout();th=items.map(()=>0);om=items.map(()=>0);x=target=0;v=0;th[0]=mode=='bags'?.5:.35;sec=items.map(()=>0);sv=items.map(()=>0);info();}
+function layout(){const vh=innerHeight,vw=innerWidth;els.forEach((e,i)=>{const p=items[i];
+ if(mode=='bags'){const w=Math.min(vw*.7,(vh-400)/p.ar,420);e.style.width=w+'px';e.style.marginLeft=(-w/2)+'px';return}
+ const hookh=Math.max(34,vh*.05),avail=vh-112-hookh-200,w=Math.min(vw*.84,avail/p.ar,500),h=w*p.ar,[nx,ny]=p.hook,neck=ny*h+Math.min(h*.03,14);
+ e.style.width=w+'px';e.style.marginLeft=(-w/2)+'px';e.style.height=(hookh+h-neck)+'px';
+ e.style.setProperty('--ox',nx*w+'px');e.style.setProperty('--neck',neck+'px');e.style.setProperty('--hookh',hookh+'px');e.style.setProperty('--hw',(w*.36)+'px');e.style.setProperty('--tuck',Math.min(h*.09,40)+'px');
+ const c=e.querySelector('.cast');c.style.top=(hookh-neck+h-6)+'px';e._cloth=e.querySelector('.cloth');e._shade=e.querySelector('.shade')})}
+addEventListener('resize',layout);
 function info(){const i=idx(),p=items[i];$('#name').textContent=p.name;$('#price').textContent=fmt(p.price);$('#idx').textContent=(mode=='bags'?'Bags':'Closet')+' · '+(i+1)+' of '+items.length;
  els.forEach((e,j)=>{e.setAttribute('aria-hidden',j!=i)})}
 const idx=()=>Math.max(0,Math.min(items.length-1,Math.round(target)));
@@ -21,7 +31,11 @@ let last=performance.now();function tick(t){let dt=Math.min(.033,(t-last)/1000);
   const a=Math.abs(d);if(a>2.2){e.style.visibility='hidden';return}e.style.visibility='visible';
   const s=1-Math.min(a,1)*.22,deg=th[i]*57.3;
   e.style.transform=mode=='bags'?`translateX(${d*W}px) scale(${s}) rotateY(${deg*1.6}deg) rotate(${deg*.25}deg)`:`translateX(${d*W}px) scale(${s}) rotate(${deg}deg)`;
-  e.style.opacity=1-Math.min(a,1)*.45;e.style.zIndex=10-Math.round(a*3)});
+  e.style.opacity=1-Math.min(a,1)*.55;
+  if(e._cloth){// secondary motion: cloth lags behind hanger like a damped spring
+   const sa=-90*(sec[i]-th[i])-9*sv[i];sv[i]+=sa*dt;sec[i]+=sv[i]*dt;const lag=(sec[i]-th[i])*57.3;
+   e._cloth.style.transform=`rotate(${lag*.6}deg) skewX(${(-om[i]*3.2+lag*.5).toFixed(2)}deg) scaleY(${(1+Math.min(.015,Math.abs(om[i])*.01)).toFixed(4)})`;
+   e._shade.style.setProperty('--la',(deg*2.2).toFixed(1)+'deg')}e.style.zIndex=10-Math.round(a*3)});
  requestAnimationFrame(tick)}
 const width=()=>innerWidth>900?Math.min(innerWidth*.42,520)+80:Math.min(innerWidth*.84,460)*.9;requestAnimationFrame(tick);
 let sx,lx,lt,moved;
@@ -43,7 +57,7 @@ document.querySelectorAll('.sheet').forEach(s=>{let y0=null;s.addEventListener('
 // PDP
 let cur,size;
 function openPDP(){cur=items[idx()];$('#pName').textContent=cur.name;$('#pPrice').textContent=fmt(cur.price);$('#pDesc').textContent=cur.desc||'';
- $('#pGal').innerHTML=[cur.cut,...cur.imgs].map(s=>`<img src="${s}" alt="${cur.name}" loading="lazy">`).join('');
+ $('#pNote').textContent=(cur.ai?'Hanging image is an AI-assisted product render; ':'')+'swipe for real photos & styled looks';$('#pGal').innerHTML=[cur.cut,...cur.imgs].map(s=>`<img src="${s}" alt="${cur.name}" loading="lazy">`).join('');
  const vs=cur.variants;size=(vs.find(v=>v.ok)||vs[0]);
  $('#pSizes').innerHTML=vs.map(v=>`<button role="radio" aria-checked="${v===size}" ${v.ok?'':'disabled'} data-id="${v.id}">${v.t=='Default Title'?'One Size':v.t}</button>`).join('');
  $('#pAdd').disabled=!vs.some(v=>v.ok);$('#pAdd').textContent=vs.some(v=>v.ok)?'Add to Bag':'Sold Out';sheet('#pdp')}
@@ -63,3 +77,8 @@ $('#toCheckout').onclick=()=>{$('#oLines').innerHTML=rows(0);$('#oSub').textCont
 const permalink=()=>'https://www.themooment.com/cart/'+cart.map(l=>l.v+':'+l.q).join(',');
 $('#pay').onclick=e=>{haptic(e.currentTarget);const u=permalink();$('#dLink').href=u;sheet('#done');cart=[];save();setTimeout(()=>{if(open&&open.id=='done')location.href=u},2500)};
 build();draw();
+const intro=$('#intro'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function enter(fast){if(intro.classList.contains('go'))return;sessionStorage.setItem('tm_intro','1');haptic();
+ if(!fast&&!RM){document.body.classList.add('entering');th[0]=.45;setTimeout(()=>document.body.classList.remove('entering'),2100)}
+ intro.classList.add('go');setTimeout(()=>{intro.remove();stage.focus()},fast||RM?400:1900)}
+if(sessionStorage.getItem('tm_intro'))intro.remove();else{$('#enter').onclick=()=>enter(0);$('#skip').onclick=()=>enter(1);$('#enter').focus()}
