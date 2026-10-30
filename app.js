@@ -6,13 +6,13 @@ const stage=$('#stage'),track=$('#track'),hooks=$('#hooks'),RM=matchMedia('(pref
 P.forEach(p=>{const i=new Image();i.decoding='async';i.src=p.cut;i.decode&&i.decode().catch(()=>{})});
 // seeded random so the closet looks the same each visit
 let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
-let mode='clothes',items=[],H=[],pos=0,vel=0,target=0,railA=0,prevVel=0,drag=null,S=260,railY=120,shown=-1;
+let mx=0,mode='clothes',items=[],H=[],pos=0,vel=0,target=0,railA=0,prevVel=0,drag=null,S=260,railY=120,shown=-1;
 function build(){items=sets[mode];document.body.classList.toggle('bags',mode=='bags');seed=7;
  track.innerHTML=items.map((p,i)=>mode=='bags'
-  ?`<div class="item bag"><img src="${p.cut}" alt="${p.name}" draggable="false" decoding="async"><div class="ped"></div></div>`
+  ?`<div class="item bag"><div class="niche"><i class="glow"></i><i class="dl"></i></div><div class="shelf"></div><i class="fs"></i><img class="rf" src="${p.cut}" alt="" aria-hidden="true" draggable="false"><img class="bg" src="${p.cut}" alt="${p.name}" draggable="false" decoding="async"><span class="plq">${String(i+1).padStart(2,'0')}</span></div>`
   :`<div class="item"><div class="cloth"><img src="${p.cut}" alt="${p.name}" draggable="false" decoding="async"><div class="dim" style="-webkit-mask-image:url('${p.cut}');mask-image:url('${p.cut}')"></div></div></div>`).join('');
  hooks.innerHTML=mode=='bags'?'':items.map(()=>'<div class="hk"></div>').join('');
- H=[...track.children].map((el,i)=>({el,hk:hooks.children[i],cloth:el.querySelector('.cloth'),dim:el.querySelector('.dim'),
+ H=[...track.children].map((el,i)=>({el,img:el.querySelector('.bg'),rf:el.querySelector('.rf'),dl:el.querySelector('.dl'),fs:el.querySelector('.fs'),ly:0,lv:0,tz:0,tv:0,hk:hooks.children[i],cloth:el.querySelector('.cloth'),dim:el.querySelector('.dim'),
   rest:(rnd()-.5)*0.09,/* ±2.6° */ th:0,om:0,w0:Math.sqrt(26)*(.86+rnd()*.28),c:2.2+rnd()*.9,depth:.93+rnd()*.05,jit:(rnd()-.5)*12,z:-1,vis:null}));
  H.forEach(h=>h.th=h.rest);pos=target=0;vel=0;shown=-1;layout();info()}
 function layout(){const vw=innerWidth,top=stage.getBoundingClientRect().top;
@@ -20,8 +20,10 @@ function layout(){const vw=innerWidth,top=stage.getBoundingClientRect().top;
  railY=Math.round(hb+(vw<900?30:36));stage.style.setProperty('--railY',(railY-top)+'px');
  const desk=vw>=900;S=desk?Math.min(vw*.25,380):vw*.64;
  H.forEach((h,i)=>{const p=items[i],e=h.el;
-  if(mode=='bags'){S=desk?Math.min(vw*.3,420):vw*.8;const w=Math.min(desk?340:vw*.66,(it-railY-120)/p.ar),hh=w*p.ar;
-   Object.assign(e.style,{width:w+'px',height:hh+'px',marginLeft:-w/2+'px',top:(it-top-70-hh)+'px'});h.px=w/2;h.py=hh;e.style.transformOrigin='50% 100%';return}
+  if(mode=='bags'){const nw=desk?Math.min(vw*.3,420):vw*.74,nh=Math.max(300,it-hb-30);S=nw+(desk?36:18);
+   const sy=nh*.8,bw=Math.min(nw*.78,sy*.66/p.ar),bh=bw*p.ar;
+   Object.assign(e.style,{width:nw+'px',height:nh+'px',marginLeft:-nw/2+'px',top:(hb+16-top)+'px',transformOrigin:'50% 50%'});
+   e.style.setProperty('--sy',sy+'px');e.style.setProperty('--bw',bw+'px');e.style.setProperty('--bh',bh+'px');h.px=nw/2;h.py=sy;return}
   const R=desk?6:5,[nx,ny]=p.hook,w0=Math.min(desk?Math.min(vw*.3,440):vw*.8,(it-railY-24)/(p.ar*(1-ny)+.085)),w=w0,hh=w*p.ar,px=nx*w,py=ny*hh,Ls=w*.075;
   const neck=railY+R+Ls,imgTop=neck-py,oy=railY-R-imgTop;// pivot = top of the rod, in item coords
   Object.assign(e.style,{width:w+'px',height:hh+'px',marginLeft:-px+'px',top:(imgTop-top)+'px',transformOrigin:`${px}px ${oy}px`});
@@ -54,13 +56,22 @@ function tick(t){const dt=Math.min(.032,(t-last)/1000)||.016;last=t;const N=item
    if(i>0&&H[i-1].vis)acc+=3.5*(H[i-1].th-h.th);if(i<N-1&&H[i+1].vis)acc+=3.5*(H[i+1].th-h.th);// neighbours nudge
    h.om+=acc*dt;h.th+=h.om*dt;if(h.th>.19){h.th=.19;h.om*=-.3}if(h.th<-.19){h.th=-.19;h.om*=-.3}}
   const f=Math.min(ad,1),s=hang?(1-f*(1-h.depth)):1-f*.1,x=d*S+(hang?h.jit*f:0);
-  h.el.style.transform=hang?`translate3d(${x.toFixed(1)}px,0,0) rotate(${(h.th*57.3).toFixed(2)}deg) scale(${s.toFixed(3)})`
-   :`translate3d(${x.toFixed(1)}px,0,0) scale(${s.toFixed(3)}) rotateY(${Math.max(-18,Math.min(18,-vel*6)).toFixed(1)}deg)`;
-  if(hang){h.hk.style.transform=h.el.style.transform;h.hk.style.opacity=(1-Math.min(ad,1.6)*.3).toFixed(2);h.cloth.style.transform=`skewX(${Math.max(-3,Math.min(3,h.om*1.6)).toFixed(2)}deg)`;h.dim.style.opacity=(Math.min(ad,1.6)*.38).toFixed(2)}
-  else h.el.style.opacity=(1-Math.min(ad,1.4)*.45).toFixed(2);
+  if(!hang){// vitrine: lift while gliding, land with a small bounce + tilt, slow 3D turn when focused
+   const lt=-Math.min(1,Math.abs(vel))*16;h.lv+=(-(h.ly-lt)*95-7.5*h.lv)*dt;h.ly+=h.lv*dt;
+   const tt=Math.max(-7,Math.min(7,-vel*5));h.tv+=(-(h.tz-tt)*80-6.5*h.tv)*dt;h.tz+=h.tv*dt;
+   const ry=(RM?0:Math.sin(t/1000*.55+i)*5)*(1-f)+d*-16+mx*6*(1-f)-vel*4;
+   h.el.style.transform=`translate3d(${x.toFixed(1)}px,0,0) scale(${(1-f*.12).toFixed(3)})`;
+   h.el.style.filter=f>.02?`blur(${(f*3.2).toFixed(1)}px) brightness(${(1-f*.4).toFixed(2)})`:'none';
+   const bt=`translateY(${h.ly.toFixed(1)}px) rotate(${h.tz.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+   if(!h.ql)h.img.style.transform=bt;h.rf.style.transform=`translateY(${(-h.ly).toFixed(1)}px) scaleY(-1) rotate(${(-h.tz).toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+   h.dl.style.transform=`translateX(${(-ry*2.2).toFixed(1)}px)`;h.fs.style.transform=`scale(${(1+h.ly/60).toFixed(3)})`;h.fs.style.opacity=(1+h.ly/40).toFixed(2);
+   const z=20-Math.round(ad*4);if(z!==h.z){h.el.style.zIndex=z;h.z=z}continue}
+  h.el.style.transform=`translate3d(${x.toFixed(1)}px,0,0) rotate(${(h.th*57.3).toFixed(2)}deg) scale(${s.toFixed(3)})`;
+  h.hk.style.transform=h.el.style.transform;h.hk.style.opacity=(1-Math.min(ad,1.6)*.3).toFixed(2);h.cloth.style.transform=`skewX(${Math.max(-3,Math.min(3,h.om*1.6)).toFixed(2)}deg)`;h.dim.style.opacity=(Math.min(ad,1.6)*.38).toFixed(2);
   const z=20-Math.round(ad*4);if(z!==h.z){h.el.style.zIndex=z;h.z=z}}
  info();requestAnimationFrame(tick)}
 requestAnimationFrame(tick);
+addEventListener('pointermove',e=>{if(e.pointerType=='mouse')mx=e.clientX/innerWidth*2-1});
 // ---- input: rail follows the finger 1:1 ----
 let sx,sp,lx,lt,moved,vs=[];
 stage.addEventListener('pointerdown',e=>{if(e.target.closest('.nav'))return;drag=1;sx=lx=e.clientX;sp=pos;lt=performance.now();moved=0;vs=[];stage.setPointerCapture(e.pointerId)});
@@ -69,7 +80,7 @@ stage.addEventListener('pointermove',e=>{if(!drag)return;const now=performance.n
  const dtm=Math.max(.004,(now-lt)/1000);vs.push([now,(np-pos)/dtm]);vs=vs.filter(v=>now-v[0]<90);vel=vs.reduce((s,v)=>s+v[1],0)/vs.length;pos=np;lx=e.clientX;lt=now});
 const up=e=>{if(!drag)return;drag=null;if(performance.now()-lt>80)vel=0;
  if(moved<6){const el=e.target.closest&&document.elementsFromPoint(e.clientX,e.clientY).find(x=>x.classList&&x.classList.contains('item'));
-  const j=H.findIndex(h=>h.el===el);if(j>-1&&j!=idx())go(j);else if(j==idx())openPDP();return}
+  const j=H.findIndex(h=>h.el===el);if(j>-1&&j!=idx())go(j);else if(j==idx())mode=='bags'?quick(H[j]):openPDP();return}
  // momentum with friction, then snap to nearest hanger
  const proj=pos+vel*.28;target=Math.max(0,Math.min(items.length-1,Math.round(proj)));haptic()};
 stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
@@ -122,3 +133,10 @@ $('#aForm').onsubmit=e=>{e.preventDefault();const v=$('#aEmail').value.trim();if
 if(matchMedia('(hover:hover) and (pointer:fine)').matches){const c=$('#cur');document.body.classList.add('fine');
  addEventListener('pointermove',e=>{c.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`;const t=e.target.closest&&e.target.closest('button,a,input,textarea,summary,.sheet');c.classList.toggle('off',!!t||!e.target.closest('#stage'))});
  stage.addEventListener('pointerdown',()=>c.classList.add('down'));addEventListener('pointerup',()=>c.classList.remove('down'))}
+
+// quick-look: the bag lifts out of its niche toward you, then the product sheet rises
+function quick(h){if(RM||h.ql)return openPDP();h.ql=1;const r=h.img.getBoundingClientRect(),c=h.img.cloneNode();c.className='ql';c.style.transform='';
+ Object.assign(c.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});document.body.appendChild(c);h.img.style.visibility='hidden';
+ const tw=Math.min(innerWidth*.62,340),k=tw/r.width,tx=innerWidth/2-(r.left+r.width/2),ty=innerHeight*.26-(r.top+r.height/2);
+ c.getBoundingClientRect();c.style.transform=`translate(${tx}px,${ty}px) scale(${k})`;
+ setTimeout(()=>{openPDP();c.style.opacity=0;setTimeout(()=>{c.remove();h.img.style.visibility='';h.ql=0},450)},560)}

@@ -20,13 +20,13 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/untitled-jul29_13-58-51.webp?v=6",
+  "cut": "cut/untitled-jul29_13-58-51.webp?v=9",
   "hook": [
    0.499,
    0,
    0.337
   ],
-  "ar": 1.076
+  "ar": 1.08
  },
  {
   "id": "untitled-jun18_19-55",
@@ -72,12 +72,12 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/untitled-jun18_19-55.webp?v=8",
+  "cut": "cut/untitled-jun18_19-55.webp?v=9",
   "hook": [
-   0.5,
-   0.0922
+   0.5019,
+   0.0056
   ],
-  "ar": 1.259,
+  "ar": 1.148,
   "ai": 1
  },
  {
@@ -129,12 +129,12 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/red-gem-theory.webp?v=8",
+  "cut": "cut/red-gem-theory.webp?v=9",
   "hook": [
-   0.5022,
-   0.0944
+   0.5054,
+   0.01
   ],
-  "ar": 1.322,
+  "ar": 1.205,
   "ai": 1
  },
  {
@@ -186,12 +186,12 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/yellow-gem-theory.webp?v=8",
+  "cut": "cut/yellow-gem-theory.webp?v=9",
   "hook": [
-   0.4985,
-   0.0967
+   0.5007,
+   0.0044
   ],
-  "ar": 1.337,
+  "ar": 1.211,
   "ai": 1
  },
  {
@@ -215,7 +215,7 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/dual-essence.webp?v=6",
+  "cut": "cut/dual-essence.webp?v=9",
   "hook": [
    0.499,
    0,
@@ -266,12 +266,12 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/the-essential-mooment-sets-gray.webp?v=8",
+  "cut": "cut/the-essential-mooment-sets-gray.webp?v=9",
   "hook": [
-   0.4956,
-   0.0844
+   0.5025,
+   0.01
   ],
-  "ar": 1.616,
+  "ar": 1.498,
   "ai": 1
  },
  {
@@ -319,12 +319,12 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/the-essential-mooment-sets-blue.webp?v=8",
+  "cut": "cut/the-essential-mooment-sets-blue.webp?v=9",
   "hook": [
-   0.4991,
-   0.0856
+   0.5016,
+   0.0067
   ],
-  "ar": 1.61,
+  "ar": 1.478,
   "ai": 1
  },
  {
@@ -372,12 +372,12 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-black.webp?v=8",
+  "cut": "cut/gem-theory-black.webp?v=9",
   "hook": [
-   0.5035,
-   0.0911
+   0.5071,
+   0.0067
   ],
-  "ar": 1.273,
+  "ar": 1.163,
   "ai": 1
  },
  {
@@ -424,10 +424,10 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/proof-of-pressure-tee-ivory.webp?v=8",
+  "cut": "cut/proof-of-pressure-tee-ivory.webp?v=9",
   "hook": [
    0.5,
-   0.0922
+   0.0933
   ],
   "ar": 1.259,
   "ai": 1
@@ -477,12 +477,12 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-hoodie-purple.webp?v=8",
+  "cut": "cut/gem-theory-hoodie-purple.webp?v=9",
   "hook": [
-   0.5086,
-   0.0911
+   0.5072,
+   0.0056
   ],
-  "ar": 1.295,
+  "ar": 1.178,
   "ai": 1
  },
  {
@@ -524,12 +524,12 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/gem-theory-hoodie-blue.webp?v=8",
+  "cut": "cut/gem-theory-hoodie-blue.webp?v=9",
   "hook": [
-   0.4993,
-   0.0944
+   0.5013,
+   0.0056
   ],
-  "ar": 1.32,
+  "ar": 1.2,
   "ai": 1
  },
  {
@@ -588,12 +588,12 @@ window.PRODUCTS=[
     "ok": true
    }
   ],
-  "cut": "cut/blue-wavy-sweater.webp?v=8",
+  "cut": "cut/blue-wavy-sweater.webp?v=9",
   "hook": [
-   0.5007,
-   0.09
+   0.4957,
+   0.0106
   ],
-  "ar": 1.322,
+  "ar": 1.209,
   "ai": 1
  },
  {
@@ -652,12 +652,12 @@ window.PRODUCTS=[
     "ok": false
    }
   ],
-  "cut": "cut/pink-wavy-sweater.webp?v=8",
+  "cut": "cut/pink-wavy-sweater.webp?v=9",
   "hook": [
-   0.4874,
-   0.0956
+   0.4844,
+   0.0058
   ],
-  "ar": 1.286,
+  "ar": 1.168,
   "ai": 1
  }
 ];
